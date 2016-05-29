@@ -1,0 +1,6 @@
+<!-- file.xml -->
+<root>
+  <a>
+    <b attr="I want to get this"> </b>
+  </a>
+</root>

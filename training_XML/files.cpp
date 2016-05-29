@@ -17,7 +17,8 @@ int main(int argc, char* argv[])
     NodeSet result = rootNode->find("/html/head/a/@href");
 
     // Get first node from result
-    Node *firstNodeInResult = result.at(0);
+    for(int i = 0;i<result.size();i++){
+    Node *firstNodeInResult = result.at(i);
     // Cast to Attribute node (dynamic_cast on reference can throw [fail fast])
     Attribute &attribute = dynamic_cast<Attribute&>(*firstNodeInResult);
     
@@ -26,4 +27,5 @@ int main(int argc, char* argv[])
 
     // Print attribute value
     cout << attributeValue << endl;
+   }
 }

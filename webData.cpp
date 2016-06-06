@@ -9,27 +9,28 @@ static size_t writeUrlContent(void* content,size_t size,size_t mmemb,void* userp
 	return size*mmemb;
 }
 
-int main(){
+
+
+std::string readHtmlFile(std::string url){
   std::string readBuffer;
   CURL *curl;
   CURLcode res;
  
   curl = curl_easy_init();
   if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "http://nn7.free.fr");
-    //curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,writeUrlContent);
     curl_easy_setopt(curl,CURLOPT_WRITEDATA,&readBuffer);	
     res = curl_easy_perform(curl);
-   /*
-    if(res != CURLE_OK)
-      fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-    */
-    curl_easy_cleanup(curl);
     
-std::cout << "BEGINNE the buffer is "<<readBuffer<<" *********"<<std::endl;   
 }
+return  readBuffer;
+}
+
+int main(){
+
+std::cout << readHtmlFile("http://www.fnac.com/") << std::endl;
+
+
 return 0;
 }
-
-
